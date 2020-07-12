@@ -1,0 +1,45 @@
+<h3>{{viewTitle}}</h3>
+
+<form action="/admin" method="POST" autocomplete="off">
+    <input type="hidden" name="_id" value="{{user._id}}">
+    <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" class="form-control" name="fullName" placeholder="Full Name" value="{{user.fullName}}">
+        <div class="text-danger">
+            {{user.fullNameError}}</div>
+    </div>
+    <div class="form-group">
+        <label>Roll No</label>
+        <input type="text" class="form-control" name="rollno" placeholder="Roll No" value="{{user.rollno}}">
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>Designation</label>
+            <input type="text" class="form-control" name="stat" placeholder="Student / Staff" value="{{user.stat}}">
+        </div>
+        <div class="form-group col-md-6">
+            <label>Department</label>
+            <input type="text" class="form-control" name="dept" placeholder="Department" value="{{user.dept}}">
+        </div>
+    </div>
+    <div class="form-row">
+        <label>Mobile No.</label>
+        <input type="text" class="form-control" name="phone" placeholder="Mobile Number" value="{{user.phone}}">
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>Email</label>
+            <input type="text" class="form-control" name="email" placeholder="Email" value="{{user.email}}">
+            <div class="text-danger">
+                {{user.emailError}}</div>
+        </div>
+        <div class="form-group col-md-6">
+            <label>Password</label>
+            <input type="password" class="form-control" name="password" placeholder="Password" value="{{user.password}}">
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-info"><i class="fa fa-database"></i> Submit</button>
+        <a class="btn btn-secondary" href="/admin/list"><i class="fa fa-list-alt"></i> View All</a>
+    </div>
+</form>

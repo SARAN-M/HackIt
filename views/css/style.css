@@ -1,0 +1,107 @@
+* {
+  box-sizing: border-box;
+}
+#student-top {
+  border: 2px solid black;
+  border-radius: 25px;
+}
+#top-left::before {
+  content: "";
+  border-color: transparent black transparent transparent;
+  left: 443px;
+  border-width: 32px;
+  position: absolute;
+  border-style: solid;
+  top: 0px;
+}
+@media only screen and (max-width: 600px) {
+  #top-left::before {
+    content: "";
+    left: 0;
+    border-width: 0;
+    top: 0;
+  }
+}
+#top-right::before {
+  content: "";
+  border-color: transparent white transparent transparent;
+  left: -64px;
+  border-width: 32px;
+  position: absolute;
+  border-style: solid;
+  top: -1px;
+}
+@media only screen and (max-width: 600px) {
+  #top-right::before {
+    content: "";
+    left: 0;
+    border-width: 0;
+    top: 0;
+  }
+}
+#student-nav {
+  width: 150px;
+}
+@media only screen and (max-width: 600px) {
+  #student-nav {
+    width: 100%;
+  }
+}
+#student-nav::after {
+  content: "";
+  border-color: transparent white transparent transparent;
+  right: 23px;
+  border-width: 27px;
+  position: absolute;
+  border-style: solid;
+  top: 95px;
+}
+@media only screen and (max-width: 600px) {
+  #student-nav::after {
+    content: "";
+    left: 0;
+    border-width: 0;
+    top: 0;
+  }
+}
+#teacher-nav {
+  color: black;
+  transition: 1s;
+}
+#teacher-nav:hover {
+  transition: 1s;
+  color: white;
+  background-color: black;
+}
+table {
+  border-collapse: collapse;
+  border: 2px solid black;
+}
+table,
+td,
+th {
+  border: 2px solid black;
+  border-radius: 50px;
+}
+#table-div {
+  border: 2px solid black;
+  border-radius: 25px;
+  overflow-y: auto;
+}
+#table-div::before {
+  content: "";
+  border-color: transparent black transparent transparent;
+  left: -60px;
+  border-width: 30px;
+  position: absolute;
+  border-style: solid;
+  top: 95px;
+}
+@media only screen and (max-width: 600px) {
+  #table-div::before {
+    content: "";
+    left: 0;
+    border-width: 0;
+    top: 0;
+  }
+}
