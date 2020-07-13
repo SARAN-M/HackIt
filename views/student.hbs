@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 m-auto">
+                <h3>Tests Available</h3>
+                {{#each tests}}
+                <div>
+                    <a href="/student/{{this.title}}?page=1">{{this.title}}</a>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

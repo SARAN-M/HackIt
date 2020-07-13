@@ -8,7 +8,7 @@ const connectEnsureLogin = require('connect-ensure-login');
 const mongoose = require('mongoose');
 const Handlebars = require('handlebars')
 const exphbs = require('express-handlebars');
-const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
+const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
 
 const test = mongoose.model('Testdetail');
 
