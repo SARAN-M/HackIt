@@ -9,6 +9,7 @@
 <body>
     <div class="container">
         <h1>{{message}}</h1>
+        {{#if cond}}
         <div>
             <form action="/faculty/created" method="POST">
                 <button class="btn-primary btn mt-3" type="submit">Create Test</button>
@@ -17,6 +18,7 @@
                 <button class="btn-primary btn mt-2" type="submit">Cancel</button>
             </form>
         </div>
+        {{/if}}
         <div class="col-md-6 offset-md-3 border p-3 mt-5">
             <form class="test-form" method="POST" action="/faculty/uploadTest/upload" enctype="multipart/form-data">
                 <div class="input-group mt-3">
@@ -31,11 +33,21 @@
         <br><br>
         <div class="row">
             <div class="col-md-6 m-auto">
+                {{#if cond}}
                 <h3>Uploaded Files</h3>
                 {{#each files}}
                 <hr>
                     <p>{{this.filename}}</p>
                 {{/each}}
+                {{else}}
+                <h3>Uploaded Files</h3>
+                {{#each files}}
+                <hr>
+                    <form action="/del/{{this._id}}" method="POST">
+                        {{this.filename}}  <button class="btn-primary btn mt-3" type="submit">Delete</button>
+                    </form>
+                {{/each}}
+                {{/if}}
             </div>
         </div>
     </div>

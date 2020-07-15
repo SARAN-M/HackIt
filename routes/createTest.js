@@ -17,7 +17,7 @@ router.post("/ups", (req,res) => {
     c.question=req.body.question;
     c.save((err,doc)=>{
     if (!err)
-        res.redirect('/faculty/uploadTest');
+        res.redirect(`/faculty/${{title}}`);
     else
         console.log('Error during record insertion : ' + err);
    });

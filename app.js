@@ -67,11 +67,11 @@ app.use('/admin', admin);
 
 //Student
 var student = require('./routes/student');
-app.use('/student', student);
+app.use('/Student', student);
 
 //Faculty
 var faculty = require('./routes/faculty');
-app.use('/faculty', faculty);
+app.use('/Faculty', faculty);
 
 //Port
 const port = 5000;

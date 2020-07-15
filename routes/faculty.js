@@ -28,12 +28,16 @@ var form = require('./createTest.js');
 app.use('/createTest', form);
 
 var uploads = require('../middleware/uploadController');
-app.get('/uploadTest', uploads.loadHome);
+app.get('/viewTest', uploads.testAvail);
+
+app.get('/:title', uploads.loadHome);
 
 app.post('/uploadTest/upload', uploads.uploadFile);
 
 app.post('/created', (req, res) => {
     res.redirect('/faculty');;
 });
+
+app.get('/:title/view', uploads.viewTest);
 
 module.exports = app;

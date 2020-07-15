@@ -116,7 +116,7 @@ module.exports.testAvail = async (req, res, next) => {
 
     test.find().exec((err, docs) => {
       // Check if files
-      res.render('student.hbs', {tests: docs, layout: false});
+      res.render('testAvail.hbs', {status: "Student", message: "Tests Available", tests: docs, cond: true, layout: false});
     });
   });
 };
