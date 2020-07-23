@@ -5,8 +5,8 @@ const bcrypt = require('bcryptjs');
 const app = express();
 const passport = require('passport');
 const flash = require('connect-flash');
+const { ensureAuthenticated, forwardAuthenticated } = require("./config/auth");
 const session = require('express-session');
-const connectEnsureLogin = require('connect-ensure-login');
 require('./config/passport')(passport);
 
 //MiddleWare
@@ -40,26 +40,26 @@ app.use(function(req, res, next) {
 })
 
 app.use(express.static(__dirname + '/views'));
+app.use(express.static(path.join(__dirname +'/views')));
 app.set('views', path.join(__dirname + '/views'));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
-app.get('/', (req, res) => {
-    res.render('index.html');
+app.get('/',forwardAuthenticated, (req, res) => {
+    res.render('index.ejs');
 });
 
-app.get('/login', (req, res) => {
-  res.render('login.html');
+app.get('/user',(req, res) => {
+  res.send({user: req.user})
 });
-
-app.get('/user',connectEnsureLogin.ensureLoggedIn(),(req, res) => res.send({user: req.user})
-);
-
 //Routes
-
+app.get('/logout',(req,res)=>{
+  req.session.destroy();
+  res.redirect('/');
+})
 //Upload Files
 var uploads = require('./routes/uploads');
-app.use('/uf', uploads);
+app.use('/uf',ensureAuthenticated,uploads);
 
 //Admin
 var admin = require('./routes/admin.js');
@@ -67,12 +67,12 @@ app.use('/admin', admin);
 
 //Student
 var student = require('./routes/student');
-app.use('/Student', student);
+app.use('/student',student);
 
 //Faculty
 var faculty = require('./routes/faculty');
-app.use('/Faculty', faculty);
+app.use('/faculty',faculty);
 
 //Port
-const port = process.env.PORT || 5000;
-app.listen(port, "0.0.0.0", () => console.log(`Server started on port ${port}`));
+const port = 5000;
+app.listen(port, () => console.log(`Server started on port ${port}`));
