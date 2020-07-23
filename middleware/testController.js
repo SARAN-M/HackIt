@@ -5,10 +5,10 @@ const MongoClient = require('mongodb');
 const multer = require('multer');
 const GridFsStorage = require('multer-gridfs-storage')
 const mongoose = require('mongoose');
-
+const User = mongoose.model('Users');
 const url = "mongodb+srv://mongo:mongo@cluster0-4zn27.mongodb.net/test?retryWrites=true&w=majority";
 const dbName = "test";
-
+const { ensureAuthenticated, forwardAuthenticated } = require("../config/auth");
 const test= mongoose.model('Testdetail');
 
 let storage = new GridFsStorage({
@@ -113,10 +113,16 @@ module.exports.testAvail = async (req, res, next) => {
     if(err){
         return res.render('index', {title: 'Uploaded Error', message: 'MongoClient Connection error', error: err.errMsg});
     }
-
+ User.find({email:req.user.email},(err,docs)=>{
+    if(docs[0].stat=='Student'){
     test.find().exec((err, docs) => {
-      // Check if files
-      res.render('testAvail.hbs', {status: "Student", message: "Tests Available", tests: docs, cond: true, layout: false});
+      res.render('student.hbs', {tests: docs, layout: false});
     });
+    }
+    else{
+      res.redirect('/faculty');
+      }
+      })
+
   });
 };
